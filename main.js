@@ -6,12 +6,12 @@ $(document).ready(function () {
     const logo = login.find(".logo");
     const favorites = $("#favorites .items").children();
     const darkBg = $(".dark-bg");
+    const homeButton = $(".home-button");
     const settingsButton = $(".settings-button");
     const settingsWindow = $("#settings");
-    const settingsBackButton = settingsWindow.find(".back-button");
     const addButton = $(".add-button");
     const addWindow = $("#add");
-    const addBackButton = addWindow.find(".back-button");
+    const homeWindow = $("#home");
 
     loginButton.on("click", function(e) {
         e.preventDefault();
@@ -56,13 +56,13 @@ $(document).ready(function () {
 
         const div = $(`<div class="favorite-selected position-absolute z-3"></div>`);
         div.css({
-            "top": favoriteOffset.top, 
-            "left": favoriteOffset.left
+            top: favoriteOffset.top, 
+            left: favoriteOffset.left
         });
         div.addClass("h-100");
         selected.css({
-            "height": "100vh", 
-            "width": newWidth,
+            height: "100vh", 
+            width: newWidth,
         });
         div.append(selected);
         div.insertAfter(darkBg);
@@ -73,7 +73,7 @@ $(document).ready(function () {
         domFavoriteSelected.animate({
             top: 0,
             left: ($(window).width() / 2) - (newWidth / 2)
-        }, 500);
+        }, 200);
         const pieces = domFavoriteSelected.find(".item").children();
         pieces.each(index => {
             const piece = pieces.eq(index);
@@ -82,75 +82,61 @@ $(document).ready(function () {
                 left: 0,
                 width: newWidth,
                 height: newHeight
-            }, 500);
+            }, 200);
             piece.find("img").animate({
                 height: newHeight * 0.8,
                 width: newWidth * 0.8
-            });
+            }, 200);
         });
     });
 
-    let settingsOffset, settingsClicked = false;
-    settingsButton.on("click", function() {
-        settingsOffset = $(this).offset();
-        openBarWindow(settingsWindow, settingsOffset, settingsClicked);
-        settingsClicked = true;
+    const windows = [homeWindow, addWindow, settingsWindow];
+    sessionStorage.setItem("actual_window", 0);
+
+    homeButton.on("click", function() {
+        showWindow(windows, 0, $(this));
     });
 
-    settingsBackButton.on("click", function() {
-        closeBarWindow(settingsWindow, settingsOffset, settingsClicked, settingsButton);
-        settingsClicked = false;
-    });
-
-    let addOffset, addClicked = false;
     addButton.on("click", function() {
-        addOffset = $(this).offset();
-        openBarWindow(addWindow, addOffset, addClicked);
-        addClicked = true;
+        showWindow(windows, 1, $(this));
     });
-
-    addBackButton.on("click", function() {
-        closeBarWindow(addWindow, addOffset, addClicked, addButton);
-        addClicked = false;
+   
+    settingsButton.on("click", function() {
+        showWindow(windows, 2, $(this));
     });
 
     darkBg.on("click", function() {
         darkBg.addClass("d-none");
         const favoriteSelected = $(".favorite-selected");
         const pieces = favoriteSelected.find(".item").children();
+        pieces.removeClass("shadow");
 
         favoriteSelected.animate({
             top: favoriteOffset.top,
             left: favoriteOffset.left
         }, {
-            duration: 400,
+            duration: 200,
             queue: false
         });
-        let top = 0, left = 0, zIndex;
+        let top = 0, left = 0;
         pieces.each(index => {
             const piece = pieces.eq(index);
-            if (index == 5) {
-                top = left = 0;
-                zIndex = 2;
-            }
-            else if (index == 4) {
-                top = left = 7;
-                zIndex = 1;
-            }
-            else {
-                top = left = 14;
-                zIndex = 0
-            }
+
+            if (index == 5) top = left = 0;
+            else if (index == 4) top = left = 7;
+            else top = left = 14;
+            
             piece.animate({
-                top: top,
-                left: left,
+                opacity: (index != pieces.length - 1) ? 0.5 : 1,
+                top: top - 14,
+                left: left - 14,
                 width: 120,
                 height: 120
-            }, 400).animate({opacity: 0}, 450);
+            }, 200);
             piece.find("img").animate({
                 height: 100,
                 width: 100
-            });
+            }, 300);
         });
         setTimeout(() => {
             favoriteSelected.remove();
@@ -166,57 +152,29 @@ function queueAnimation(elem, obj, duration, delay=0) {
     }, delay);
 }
 
-function openBarWindow(barWindow, offset, clicked) {
-    console.log("click")
-    if (!clicked) {    
-        const windowSelected = $(".window-selected");
-        windowSelected.removeClass("d-none");
-        windowSelected.css({
-            "width": $(this).width(),
-            "height": $(this).height(),
-            "top": offset.top, 
-            "left": offset.left,
-            "opacity": 0.5,
-            "z-index": ""
-        });
-
-        windowSelected.animate({
-            top: 0,
-            left: 0,
-            width: $(window).width(),
-            height: $(window).height() * 0.91,
-            opacity: 1
-        }, 200);
-
-        setTimeout(() => {
-            barWindow.css({
-                "opacity": 1,
-                "top": 0,
-                "left": 0,
-                "width": $(window).width(),
-                "height": $(window).height() * 0.91,
-            });
-            barWindow.removeClass("d-none");
-        }, 200);
-    }
-}
-
-function closeBarWindow(barWindow, offset, clicked, button) {
-    if (clicked) {
-        const windowSelected = $(".window-selected");
-        const obj = {
-            top: offset.top,
-            left: offset.left,
-            width: button.width(),
-            height: button.height(),
-        };
-        queueAnimation(barWindow, obj, 200, 0);
-        obj.opacity = 0;
-        queueAnimation(windowSelected, obj, 200, 0);
-        queueAnimation(barWindow, {opacity: 0}, 100, 100);
-        setTimeout(() => {
-            barWindow.addClass("d-none");
-            windowSelected.addClass("d-none");
-        }, 200);
-    }
+function showWindow(windows, index, button) {
+    const offset = button.offset();
+    const actualWindow = sessionStorage.getItem("actual_window");
+    windows[index].css({
+        top: offset.top + button.height() / 4,
+        left: offset.left + button.width() / 4,
+        height: button.height() / 2,
+        width: button.width() / 2,
+        opacity: 0.5,
+        zIndex: 2
+    });
+    windows[actualWindow].css("z-index", 1);
+    windows[index].removeClass("d-none");
+    windows[index].animate({
+        top: 0,
+        left: 0,
+        width: $(window).width(),
+        height: $(window).height() * 0.91,
+        opacity: 1
+    }, 200);
+    setTimeout(() => {
+        windows[actualWindow].addClass("d-none");
+        windows[actualWindow].css("z-index", 0);
+        sessionStorage.setItem("actual_window", index);
+    }, 200);
 }

@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+:root {
+    --text-color-main: #8a6c47;
+    --bg-color-main: #383635;
+}
+
+.header {
+    background-color: var(--bg-color-main);
+    height: 11vh;
+}
+
+nav {
+    background-color: var(--bg-color-main);
+    height: 9vh;
+    z-index: 0;
+}
+
+nav > i {
+    font-size: 2.2em;
+    color: white;
+}
+
+.user-part h1 {
+    color: var(--text-color-main);
+}
+
+section {
+    height: 23vh;
+}
+
+.item {
+    height: 140px;
+    width: 140px;
+}
+
+.item .piece {
+    height: 120px;
+    width: 120px;
+}
+
+.item .piece {
+    top: 14px;
+    left: 14px;
+}
+
+.item .piece:nth-last-child(2) {
+    top: 7px;
+    left: 7px;
+}
+
+.item .piece:last-child {
+    top: 0;
+    left: 0;
+}
+
+.pieces-colors {
+    max-height: 15vh;
+}
+
+.pieces-colors > img {
+    height: 10vh;
+    margin: 20px;
+}
+
+.login {
+    background-color: var(--bg-color-main);
+}
+
+.login-button {
+    background-color: var(--text-color-main);
+    border: none;
+}
+
+.login-button:active {
+    background-color: rgb(100, 78, 51)
+}
+
+.login .logo {
+    opacity: 0.5;
+    width: 80vw;
+}
+
+#favorites img {
+    height: 100px;
+    width: 100px;
+}
+
+#settings, #add, #home {
+    height: 91vh;
+    top: 0;
+    left: 0; 
+    width: 100vw;
+}
+
+.back-button {
+    background-color: var(--bg-color-main);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media (min-width: 431px) {
+    .header {
+        height: 14vh;
+    }
+
+    .header svg {
+        height: 11vh;
+    }
+}
