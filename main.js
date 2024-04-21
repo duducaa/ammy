@@ -1,13 +1,19 @@
 $(document).ready(function () {
     const audio = document.querySelector("audio");
-    const button = $(".login-button");
+    const loginButton = $(".login-button");
     const login = $(".login");
     const userPart = $(".user-part");
     const logo = login.find(".logo");
     const favorites = $("#favorites .items").children();
     const darkBg = $(".dark-bg");
+    const settingsButton = $(".settings-button");
+    const settingsWindow = $("#settings");
+    const settingsBackButton = settingsWindow.find(".back-button");
+    const addButton = $(".add-button");
+    const addWindow = $("#add");
+    const addBackButton = addWindow.find(".back-button");
 
-    button.on("click", function(e) {
+    loginButton.on("click", function(e) {
         e.preventDefault();
 
         queueAnimation(
@@ -41,16 +47,18 @@ $(document).ready(function () {
         }, 1300);
     });
 
-    let offset;
+    let favoriteOffset;
     favorites.on("click", function() {
-        offset = $(this).offset();
+        favoriteOffset = $(this).offset();
         const selected = $(this).clone();
         const newWidth = $(window).width() * 0.75;
         const newHeight = $(window).height() * 0.3;
 
         const div = $(`<div class="favorite-selected position-absolute z-3"></div>`);
-        div.css("top", offset.top)
-        div.css("left", offset.left);
+        div.css({
+            "top": favoriteOffset.top, 
+            "left": favoriteOffset.left
+        });
         div.addClass("h-100");
         selected.css({
             "height": "100vh", 
@@ -60,10 +68,8 @@ $(document).ready(function () {
         div.insertAfter(darkBg);
         darkBg.removeClass("d-none");
 
-        const domFavoriteSelected = $(".favorite-selected")
-        domFavoriteSelected.find(".item")
-        .removeClass("me-5")
-        .addClass("overflow-y-auto");
+        const domFavoriteSelected = $(".favorite-selected");
+        domFavoriteSelected.find(".item").addClass("overflow-y-auto").removeClass("me-5");
         domFavoriteSelected.animate({
             top: 0,
             left: ($(window).width() / 2) - (newWidth / 2)
@@ -77,16 +83,45 @@ $(document).ready(function () {
                 width: newWidth,
                 height: newHeight
             }, 500);
+            piece.find("img").animate({
+                height: newHeight * 0.8,
+                width: newWidth * 0.8
+            });
         });
     });
+
+    let settingsOffset, settingsClicked = false;
+    settingsButton.on("click", function() {
+        settingsOffset = $(this).offset();
+        openBarWindow(settingsWindow, settingsOffset, settingsClicked);
+        settingsClicked = true;
+    });
+
+    settingsBackButton.on("click", function() {
+        closeBarWindow(settingsWindow, settingsOffset, settingsClicked, settingsButton);
+        settingsClicked = false;
+    });
+
+    let addOffset, addClicked = false;
+    addButton.on("click", function() {
+        addOffset = $(this).offset();
+        openBarWindow(addWindow, addOffset, addClicked);
+        addClicked = true;
+    });
+
+    addBackButton.on("click", function() {
+        closeBarWindow(addWindow, addOffset, addClicked, addButton);
+        addClicked = false;
+    });
+
     darkBg.on("click", function() {
         darkBg.addClass("d-none");
         const favoriteSelected = $(".favorite-selected");
         const pieces = favoriteSelected.find(".item").children();
 
         favoriteSelected.animate({
-            top: offset.top,
-            left: offset.left
+            top: favoriteOffset.top,
+            left: favoriteOffset.left
         }, {
             duration: 400,
             queue: false
@@ -112,6 +147,10 @@ $(document).ready(function () {
                 width: 120,
                 height: 120
             }, 400).animate({opacity: 0}, 450);
+            piece.find("img").animate({
+                height: 100,
+                width: 100
+            });
         });
         setTimeout(() => {
             favoriteSelected.remove();
@@ -125,4 +164,59 @@ function queueAnimation(elem, obj, duration, delay=0) {
         time = true;
         if (time) elem.animate(obj, duration);
     }, delay);
+}
+
+function openBarWindow(barWindow, offset, clicked) {
+    console.log("click")
+    if (!clicked) {    
+        const windowSelected = $(".window-selected");
+        windowSelected.removeClass("d-none");
+        windowSelected.css({
+            "width": $(this).width(),
+            "height": $(this).height(),
+            "top": offset.top, 
+            "left": offset.left,
+            "opacity": 0.5,
+            "z-index": ""
+        });
+
+        windowSelected.animate({
+            top: 0,
+            left: 0,
+            width: $(window).width(),
+            height: $(window).height() * 0.91,
+            opacity: 1
+        }, 200);
+
+        setTimeout(() => {
+            barWindow.css({
+                "opacity": 1,
+                "top": 0,
+                "left": 0,
+                "width": $(window).width(),
+                "height": $(window).height() * 0.91,
+            });
+            barWindow.removeClass("d-none");
+        }, 200);
+    }
+}
+
+function closeBarWindow(barWindow, offset, clicked, button) {
+    if (clicked) {
+        const windowSelected = $(".window-selected");
+        const obj = {
+            top: offset.top,
+            left: offset.left,
+            width: button.width(),
+            height: button.height(),
+        };
+        queueAnimation(barWindow, obj, 200, 0);
+        obj.opacity = 0;
+        queueAnimation(windowSelected, obj, 200, 0);
+        queueAnimation(barWindow, {opacity: 0}, 100, 100);
+        setTimeout(() => {
+            barWindow.addClass("d-none");
+            windowSelected.addClass("d-none");
+        }, 200);
+    }
 }
