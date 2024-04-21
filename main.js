@@ -155,26 +155,28 @@ function queueAnimation(elem, obj, duration, delay=0) {
 function showWindow(windows, index, button) {
     const offset = button.offset();
     const actualWindow = sessionStorage.getItem("actual_window");
-    windows[index].css({
-        top: offset.top + button.height() / 4,
-        left: offset.left + button.width() / 4,
-        height: button.height() / 2,
-        width: button.width() / 2,
-        opacity: 0.5,
-        zIndex: 2
-    });
-    windows[actualWindow].css("z-index", 1);
-    windows[index].removeClass("d-none");
-    windows[index].animate({
-        top: 0,
-        left: 0,
-        width: $(window).width(),
-        height: $(window).height() * 0.91,
-        opacity: 1
-    }, 200);
-    setTimeout(() => {
-        windows[actualWindow].addClass("d-none");
-        windows[actualWindow].css("z-index", 0);
-        sessionStorage.setItem("actual_window", index);
-    }, 200);
+    if (actualWindow != index) {
+        windows[index].css({
+            top: offset.top + button.height() / 4,
+            left: offset.left + button.width() / 4,
+            height: button.height() / 2,
+            width: button.width() / 2,
+            opacity: 0.5,
+            zIndex: 2
+        });
+        windows[actualWindow].css("z-index", 1);
+        windows[index].removeClass("d-none");
+        windows[index].animate({
+            top: 0,
+            left: 0,
+            width: $(window).width(),
+            height: $(window).height() * 0.91,
+            opacity: 1
+        }, 200);
+        setTimeout(() => {
+            windows[actualWindow].addClass("d-none");
+            windows[actualWindow].css("z-index", 0);
+            sessionStorage.setItem("actual_window", index);
+        }, 200);
+    }
 }
