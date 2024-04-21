@@ -11,11 +11,19 @@
 
     <style>
         :root {
-            --text-color-main: #8a6c47; 
+            --text-color-main: #8a6c47;
+            --bg-color-main: #383635;
+            --fav-width: 
         }
 
-        h1 {
-            color: var(--text-color-main);
+        .header {
+            background-color: var(--bg-color-main);
+            height: 11vh;
+        }
+
+        nav {
+            background-color: var(--bg-color-main);
+            height: 9vh;
         }
 
         nav > i {
@@ -23,18 +31,69 @@
             color: white;
         }
 
-        .header {
-            height: 11vh;
+        .user-part h1 {
+            color: var(--text-color-main);
         }
 
-        .pieces {
-            height: 20vh;
+        section {
+            height: 23vh;
+        }
+        
+        .item {
+            height: 140px;
+            width: 140px;
         }
 
-        .pieces > img {
-            height: 100%;
+        .item .piece {
+            height: 120px;
+            width: 120px;
         }
 
+        .item .piece:last-child {
+            background-color: white;
+            z-index: 2;
+        }
+
+        .item .piece:nth-child(4) {
+            top: 7px;
+            left: 7px;
+            background-color: white;
+            z-index: 1;
+        }
+
+        .item .piece:nth-child(-n + 3) {
+            top: 14px;
+            left: 14px;
+            background-color: white;
+            z-index: 0;
+        }
+        
+        .pieces-colors {
+            max-height: 15vh;
+        }
+
+        .pieces-colors > img {
+            height: 10vh;
+            margin: 20px;
+        }
+
+        .login {
+            background-color: var(--bg-color-main);
+        }
+
+        .login-button {
+            background-color: var(--text-color-main);
+            border: none;
+        }
+
+        .login-button:active {
+            background-color: rgb(100, 78, 51)
+        }
+
+        .login .logo {
+            opacity: 0.5;
+            width: 80vw;
+        }
 
         @media (min-width: 431px) {
             .header {
@@ -44,68 +103,164 @@
     </style>
 </head>
 <body>
-    <header class="w-100 position-relative header" style="background-color: #383635;">
-        <svg class="w-50 position-absolute top-50 start-50 translate-middle" version="1.0" xmlns="http://www.w3.org/2000/svg"
-        height="232.000000pt" viewBox="0 0 544.000000 232.000000"
-        preserveAspectRatio="xMidYMid meet">
-            <g transform="translate(0.000000,232.000000) scale(0.100000,-0.100000)"
-            stroke="none" fill="#AB865A">
-            <path d="M1712 2214 c-9 -17 -354 -871 -527 -1304 l-62 -155 -43 0 -44 0 -207
-            495 -207 495 -33 0 -34 0 -206 -495 c-114 -272 -212 -496 -218 -496 -6 -1 -15
-            -2 -21 -3 -5 0 -10 -10 -10 -21 0 -19 5 -21 72 -18 60 2 73 6 76 20 2 13 -3
-            18 -17 18 -12 0 -21 3 -21 8 0 4 29 75 63 157 l62 150 196 3 196 2 62 -147
-            c34 -82 61 -154 61 -160 0 -8 -13 -13 -30 -13 -23 0 -30 -4 -30 -20 0 -19 7
-            -20 392 -17 l392 2 69 173 c64 159 86 194 100 160 3 -7 39 -96 80 -198 41
-            -102 125 -311 187 -465 61 -154 117 -286 124 -293 10 -11 15 -11 23 0 17 21
-            213 516 213 537 0 11 -97 262 -216 558 -119 296 -261 647 -314 781 -54 134
-            -102 248 -108 254 -7 7 -13 4 -20 -8z m-1097 -874 c42 -102 79 -191 82 -197 4
-            -10 -32 -13 -161 -13 -91 0 -166 4 -166 9 0 5 32 85 71 177 39 93 75 180 80
-            193 5 13 11 22 13 20 2 -2 38 -87 81 -189z"/>
-            <path d="M2552 2213 c-6 -10 -51 -120 -101 -244 -49 -123 -96 -240 -105 -259
-            -14 -35 -14 -36 178 -515 l193 -480 104 -3 c57 -2 213 0 347 3 228 7 242 8
-            242 26 0 15 -7 19 -40 19 l-40 0 0 413 c1 347 3 408 14 387 7 -14 96 -209 197
-            -433 167 -372 184 -406 195 -385 7 13 87 190 179 393 92 204 178 393 191 420
-            l23 50 0 -422 1 -423 -40 0 c-33 0 -40 -3 -40 -20 0 -19 7 -20 159 -20 127 0
-            160 3 164 14 8 20 -2 26 -45 26 l-38 0 2 473 3 472 81 3 81 3 167 -260 166
-            -260 0 -216 0 -215 -40 0 c-33 0 -40 -3 -40 -20 0 -12 8 -21 23 -25 33 -7 294
-            -1 303 7 17 18 -7 38 -46 38 l-40 0 0 210 0 211 168 264 c137 217 171 265 190
-            265 15 0 22 6 22 20 0 19 -5 21 -77 18 -61 -2 -78 -6 -78 -18 0 -8 12 -17 27
-            -20 27 -5 26 -6 -89 -185 -63 -99 -132 -206 -152 -237 l-36 -57 -143 226 c-79
-            124 -146 232 -149 239 -4 10 5 14 31 14 29 0 36 4 36 20 0 20 -5 20 -285 18
-            l-286 -3 -173 -383 c-95 -210 -175 -385 -178 -387 -3 -3 -83 169 -179 382
-            l-175 388 -122 3 c-116 2 -122 2 -122 -17 0 -16 8 -20 40 -23 l41 -3 0 -470
-            -1 -470 -45 -6 c-26 -3 -48 -3 -49 0 -2 4 -62 152 -134 331 -329 820 -453
-            1125 -461 1133 -5 5 -13 1 -19 -10z"/>
-            </g>
-        </svg>
-    </header>
-    <main class="container">
-        <section id="favorites">
-            <h1>Favorites:</h1>
-            <div class="items">
-
+    <audio src="./logo-audio/WhatsApp Audio 2024-04-20 at 23.51.47.aac"></audio>
+    <div class="user-part">
+        <header class="w-100 position-relative header fixed-top z-0">
+            <svg class="w-50 position-absolute top-50 start-50 translate-middle" version="1.0" xmlns="http://www.w3.org/2000/svg"
+            height="232.000000pt" viewBox="0 0 544.000000 232.000000"
+            preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,232.000000) scale(0.100000,-0.100000)"
+                stroke="none" fill="#AB865A">
+                <path d="M1712 2214 c-9 -17 -354 -871 -527 -1304 l-62 -155 -43 0 -44 0 -207
+                495 -207 495 -33 0 -34 0 -206 -495 c-114 -272 -212 -496 -218 -496 -6 -1 -15
+                -2 -21 -3 -5 0 -10 -10 -10 -21 0 -19 5 -21 72 -18 60 2 73 6 76 20 2 13 -3
+                18 -17 18 -12 0 -21 3 -21 8 0 4 29 75 63 157 l62 150 196 3 196 2 62 -147
+                c34 -82 61 -154 61 -160 0 -8 -13 -13 -30 -13 -23 0 -30 -4 -30 -20 0 -19 7
+                -20 392 -17 l392 2 69 173 c64 159 86 194 100 160 3 -7 39 -96 80 -198 41
+                -102 125 -311 187 -465 61 -154 117 -286 124 -293 10 -11 15 -11 23 0 17 21
+                213 516 213 537 0 11 -97 262 -216 558 -119 296 -261 647 -314 781 -54 134
+                -102 248 -108 254 -7 7 -13 4 -20 -8z m-1097 -874 c42 -102 79 -191 82 -197 4
+                -10 -32 -13 -161 -13 -91 0 -166 4 -166 9 0 5 32 85 71 177 39 93 75 180 80
+                193 5 13 11 22 13 20 2 -2 38 -87 81 -189z"/>
+                <path d="M2552 2213 c-6 -10 -51 -120 -101 -244 -49 -123 -96 -240 -105 -259
+                -14 -35 -14 -36 178 -515 l193 -480 104 -3 c57 -2 213 0 347 3 228 7 242 8
+                242 26 0 15 -7 19 -40 19 l-40 0 0 413 c1 347 3 408 14 387 7 -14 96 -209 197
+                -433 167 -372 184 -406 195 -385 7 13 87 190 179 393 92 204 178 393 191 420
+                l23 50 0 -422 1 -423 -40 0 c-33 0 -40 -3 -40 -20 0 -19 7 -20 159 -20 127 0
+                160 3 164 14 8 20 -2 26 -45 26 l-38 0 2 473 3 472 81 3 81 3 167 -260 166
+                -260 0 -216 0 -215 -40 0 c-33 0 -40 -3 -40 -20 0 -12 8 -21 23 -25 33 -7 294
+                -1 303 7 17 18 -7 38 -46 38 l-40 0 0 210 0 211 168 264 c137 217 171 265 190
+                265 15 0 22 6 22 20 0 19 -5 21 -77 18 -61 -2 -78 -6 -78 -18 0 -8 12 -17 27
+                -20 27 -5 26 -6 -89 -185 -63 -99 -132 -206 -152 -237 l-36 -57 -143 226 c-79
+                124 -146 232 -149 239 -4 10 5 14 31 14 29 0 36 4 36 20 0 20 -5 20 -285 18
+                l-286 -3 -173 -383 c-95 -210 -175 -385 -178 -387 -3 -3 -83 169 -179 382
+                l-175 388 -122 3 c-116 2 -122 2 -122 -17 0 -16 8 -20 40 -23 l41 -3 0 -470
+                -1 -470 -45 -6 c-26 -3 -48 -3 -49 0 -2 4 -62 152 -134 331 -329 820 -453
+                1125 -461 1133 -5 5 -13 1 -19 -10z"/>
+                </g>
+            </svg>
+        </header>
+        <main class="container">
+            <section id="favorites">
+                <h1 class="mb-3">Favoritos:</h1>
+                <div class="w-100 overflow-auto">
+                    <div class="items d-flex justify-content-between align-items-center pb-3">
+                        <div class="item position-relative me-5">
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                        </div>
+                        <div class="item position-relative me-5">
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                        </div>
+                        <div class="item position-relative">
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                            <div class="piece position-absolute rounded-4 shadow">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="wardrobe">
+                <h1 class="mb-3">Guarda-Roupa:</h1>
+                <div class="items">
+                </div>
+            </section>
+            <section id="colors">
+                <h1 class="mb-3">Cores:</h1>
+                <div class="pieces-colors d-flex justify-content-around align-items-center overflow-y-auto">
+                    <img  src="./outfit-parts/vestido.svg" alt="">
+                    <img src="./outfit-parts/camisa.svg" alt="">
+                    <img src="./outfit-parts/acessorio.svg" alt="">
+                </div>
+            </section>
+        </main>
+        <nav class=" d-flex justify-content-around align-items-center fixed-bottom z-0">
+            <i class="bi bi-house fw-bold"></i>
+            <i class="bi bi-plus-lg"></i>
+            <i class="bi bi-gear"></i>
+        </nav>
+        <div class="dark-bg position-absolute w-100 h-100 opacity-75 bg-dark top-0 left-0 z-3 d-none"></div>
+    </div>
+    <div class="login position-absolute top-0 start-0 w-100 h-100 overflow-auto z-3">
+        <svg class="position-absolute top-25 start-50 translate-middle-x logo" version="1.0" xmlns="http://www.w3.org/2000/svg"
+            height="232.000000pt" viewBox="0 0 544.000000 232.000000"
+            preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(0.000000,232.000000) scale(0.100000,-0.100000)"
+                stroke="none" fill="#AB865A">
+                <path d="M1712 2214 c-9 -17 -354 -871 -527 -1304 l-62 -155 -43 0 -44 0 -207
+                495 -207 495 -33 0 -34 0 -206 -495 c-114 -272 -212 -496 -218 -496 -6 -1 -15
+                -2 -21 -3 -5 0 -10 -10 -10 -21 0 -19 5 -21 72 -18 60 2 73 6 76 20 2 13 -3
+                18 -17 18 -12 0 -21 3 -21 8 0 4 29 75 63 157 l62 150 196 3 196 2 62 -147
+                c34 -82 61 -154 61 -160 0 -8 -13 -13 -30 -13 -23 0 -30 -4 -30 -20 0 -19 7
+                -20 392 -17 l392 2 69 173 c64 159 86 194 100 160 3 -7 39 -96 80 -198 41
+                -102 125 -311 187 -465 61 -154 117 -286 124 -293 10 -11 15 -11 23 0 17 21
+                213 516 213 537 0 11 -97 262 -216 558 -119 296 -261 647 -314 781 -54 134
+                -102 248 -108 254 -7 7 -13 4 -20 -8z m-1097 -874 c42 -102 79 -191 82 -197 4
+                -10 -32 -13 -161 -13 -91 0 -166 4 -166 9 0 5 32 85 71 177 39 93 75 180 80
+                193 5 13 11 22 13 20 2 -2 38 -87 81 -189z"/>
+                <path d="M2552 2213 c-6 -10 -51 -120 -101 -244 -49 -123 -96 -240 -105 -259
+                -14 -35 -14 -36 178 -515 l193 -480 104 -3 c57 -2 213 0 347 3 228 7 242 8
+                242 26 0 15 -7 19 -40 19 l-40 0 0 413 c1 347 3 408 14 387 7 -14 96 -209 197
+                -433 167 -372 184 -406 195 -385 7 13 87 190 179 393 92 204 178 393 191 420
+                l23 50 0 -422 1 -423 -40 0 c-33 0 -40 -3 -40 -20 0 -19 7 -20 159 -20 127 0
+                160 3 164 14 8 20 -2 26 -45 26 l-38 0 2 473 3 472 81 3 81 3 167 -260 166
+                -260 0 -216 0 -215 -40 0 c-33 0 -40 -3 -40 -20 0 -12 8 -21 23 -25 33 -7 294
+                -1 303 7 17 18 -7 38 -46 38 l-40 0 0 210 0 211 168 264 c137 217 171 265 190
+                265 15 0 22 6 22 20 0 19 -5 21 -77 18 -61 -2 -78 -6 -78 -18 0 -8 12 -17 27
+                -20 27 -5 26 -6 -89 -185 -63 -99 -132 -206 -152 -237 l-36 -57 -143 226 c-79
+                124 -146 232 -149 239 -4 10 5 14 31 14 29 0 36 4 36 20 0 20 -5 20 -285 18
+                l-286 -3 -173 -383 c-95 -210 -175 -385 -178 -387 -3 -3 -83 169 -179 382
+                l-175 388 -122 3 c-116 2 -122 2 -122 -17 0 -16 8 -20 40 -23 l41 -3 0 -470
+                -1 -470 -45 -6 c-26 -3 -48 -3 -49 0 -2 4 -62 152 -134 331 -329 820 -453
+                1125 -461 1133 -5 5 -13 1 -19 -10z"/>
+                </g>
+            </svg>
+        <div class="content position-relative w-100 h-100">
+            <div class=" w-75 form-div position-absolute top-50 start-50 translate-middle bg-light px-4 py-3 rounded-4 shadow">
+                <h1 class="text-center">LOGIN</h1>
+                <form action="#" class="login-form d-flex flex-column align-items-center pb-4">
+                    <div class="mb-3 w-100">
+                        <label for="ra-input" class="form-label">Username:</label>
+                        <input class="form-control" type="text" name="" id="ra-input">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="password-input" class="form-label">Password</label>
+                        <div class="d-flex position-relative">
+                            <input class="form-control" type="password" name="" id="password-input">
+                            <i class="toggle-password bi bi-eye-fill fs-1 position-absolute top-50 end-0 translate-middle-y me-2 text-secondary"></i>
+                        </div>
+                    </div>
+                    <div class="position-relative w-100 mt-4">
+                        <button class="login-button h-100 w-100 text-light fs-5 shadow rounded-2 p-1 btn">Login</button>
+                    </div>
+                </form>
             </div>
-        </section>
-        <section id="wardrobe">
-            <h1>Guarda-Roupa:</h1>
-            <div class="items">
-
-            </div>
-        </section>
-        <section id="colors">
-            <h1>Cores:</h1>
-            <div class="pieces d-flex justify-content-arround align-items-center w-100 overflow-y-auto">
-                <img src="./outfit-parts/vestido.svg" alt="">
-                <img src="./outfit-parts/camisa.svg" alt="">
-                <img src="./outfit-parts/acessorio.svg" alt="">
-            </div>
-        </section>
-    </main>
-    <nav style="background-color: #383635; height: 8vh;" class=" d-flex justify-content-around align-items-center fixed-bottom">
-        <i class="bi bi-house fw-bold"></i>
-        <i class="bi bi-plus-lg"></i>
-        <i class="bi bi-gear"></i>
-    </nav>
+        </div>
+    </div>
 
     <script type="module" src="./main.js"></script>
 </body>
