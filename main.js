@@ -74,11 +74,19 @@ $(document).ready(function () {
             top: 0,
             left: ($(window).width() / 2) - (newWidth / 2)
         }, 200);
-        const pieces = domFavoriteSelected.find(".item").children();
+        const pieces = domFavoriteSelected.find(".item .pieces").children();
+        const occasion = domFavoriteSelected.find(".occasion");
+        occasion.css({top: "-100px", left: "50%"});
+        setTimeout(() => {
+            occasion.animate({
+                top: "50px",
+                fontSize: "3em"
+            }, 500);
+        }, 200);
         pieces.each(index => {
             const piece = pieces.eq(index);
             piece.animate({
-                top: (pieces.length - index - 1) * (newHeight + 20) + 40,
+                top: (pieces.length - index - 1) * (newHeight + 20) + 140,
                 left: 0,
                 width: newWidth,
                 height: newHeight
@@ -108,7 +116,13 @@ $(document).ready(function () {
     darkBg.on("click", function() {
         darkBg.addClass("d-none");
         const favoriteSelected = $(".favorite-selected");
-        const pieces = favoriteSelected.find(".item").children();
+        const pieces = favoriteSelected.find(".item .pieces").children();
+        const occasion = favoriteSelected.find(".occasion");
+
+        occasion.animate({
+            top: "-100px",
+            opacity: 0
+        }, 150);
         pieces.removeClass("shadow");
 
         favoriteSelected.animate({
