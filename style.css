@@ -21,22 +21,27 @@ nav > i {
     color: white;
 }
 
-.user-part h1, .occasion {
+h1, h2, h3, .occasion {
     color: var(--text-color-main);
 }
 
 section {
-    height: 23vh;
+    height: 25vh;
+}
+
+.items {
+    width: fit-content;
 }
 
 .item {
-    height: 140px;
-    width: 140px;
+    margin-top: 10px;
+    height: 160px;
+    width: 160px;
 }
 
 .occasion {
-    top: -6px;
-    left: 60%;
+    top: -5px;
+    left: 40%;
     transform: translateX(-50%);
 }
 
@@ -87,7 +92,7 @@ section {
     width: 80vw;
 }
 
-#favorites img {
+section img {
     height: 100px;
     width: 100px;
 }
@@ -105,6 +110,37 @@ section {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+.profile-img {
+    font-size: 3rem;
+}
+
+.other-pages h1 {
+    text-align: center;
+}
+
+input[type=checkbox] {
+    transform: scale(1.4);
+    margin-right: 20px;
+}
+
+.add-piece-button:active {
+    background-color: #383635;
+}
+
+.new-piece {
+    height: 300px;
+    width: 300px;
+}
+
+.new-piece img {
+    width: 100%;
+    height: 100%;
+}
+
+.add-cont {
+    height: 100%;
 }
 
 @media (min-width: 431px) {
