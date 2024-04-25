@@ -1,1 +1,1 @@
-http://icons8.com/icons <- origem dos ícones de roupa
+http://icons8.com/icons e bootstrap icons <- origem dos ícones de roupa
