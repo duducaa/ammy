@@ -21,12 +21,17 @@ nav > i {
     color: white;
 }
 
-h1, h2, h3, .occasion {
+h1, h2, h3, #add label {
     color: var(--text-color-main);
 }
 
+#add label {
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
 section {
-    height: 25vh;
+    height: 27vh;
 }
 
 .items {
@@ -34,34 +39,24 @@ section {
 }
 
 .item {
-    margin-top: 10px;
-    height: 160px;
+    height: 210px;
     width: 160px;
-}
-
-.occasion {
-    top: -5px;
-    left: 40%;
-    transform: translateX(-50%);
 }
 
 .item .piece {
     height: 120px;
     width: 120px;
-}
-
-.item .piece {
-    top: 28px;
+    top: 60px;
     left: 14px;
 }
 
 .item .piece:nth-last-child(2) {
-    top: 21px;
+    top: 53px;
     left: 7px;
 }
 
 .item .piece:last-child {
-    top: 14px;
+    top: 46px;
     left: 0;
 }
 

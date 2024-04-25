@@ -2,7 +2,6 @@ $(document).ready(function () {
     const audio = document.querySelector("audio");
     const loginButton = $(".login-button");
     const login = $(".login");
-    const userPart = $(".user-part");
     const logo = login.find(".logo");
     const items = $(".items").children();
     const darkBg = $(".dark-bg");
@@ -15,7 +14,7 @@ $(document).ready(function () {
     const addPieceButton = $(".add-piece-button");
     const newOutfit = $(".new-outfit");
     const addNewOutfit = $(".add-new-outfit");
-    const favorites = $("#favorites .items");
+    const favorites = $("#outfits .items");
 
     loginButton.on("click", function(e) {
         e.preventDefault();
@@ -151,9 +150,23 @@ $(document).ready(function () {
     addNewOutfit.on("click", function() {
         const pieces = newOutfit.children();
         if (pieces.length > 0) {
-            const item = $(`<div class="item position-relative">
-                <div class="pieces"></div>
-            </div>`);
+            const occasion = addWindow.find("#new-outfit-occasion").val();
+            const item = $(
+                `<div class="item position-relative">
+                    <div class="pieces"></div>
+                    <div class="item-header d-flex justify-content-between align-items-center position-relative">
+                        <h2 class="occasion">${occasion}</h2>
+                        <i class="item-options-button bi bi-three-dots-vertical fs-2 me-4"></i>
+                        <div class="options position-absolute bg-light border top-0 d-none">
+                            <ul class="list-group">
+                                <li class="list-group-item text-danger">Excluir</li>
+                                <li class="list-group-item">Editar</li>
+                                <li class="list-group-item">Favoritar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>`
+            );
             for (let i = 0; i < pieces.length; i++) {
                 const part = pieces.eq(i);
                 const link = part.find("img").attr("src");
@@ -161,13 +174,34 @@ $(document).ready(function () {
                 <div class="piece position-absolute rounded-4 bg-light shadow d-flex justify-content-around align-items-center">
                     <img src="${link}" alt="">
                 </div>`);
-                item.append(piece);
+                item.find(".pieces").prepend(piece);
             }
-            item.append(`<h2 class="occasion position-absolute">New</h2>`);
             item.on("click", function() {
                 favoriteOffset = openModal($(this), darkBg);
             });
+            const optionsButton = item.find(".item-options-button");
+            optionsButton.on("click", function() {
+                const options = item.find(".options");
+                const offset = $(this).offset;
+                options.css({
+                    width: $(this).width(),
+                    height: $(this).height(),
+                    top: offset.top,
+                    left: offset.left,
+                    opacity: 0
+                });
+                options.removeClass("d-none");
+                options.animate({
+                    top: offset.top,
+                    left: offset.left + $(this).width()
+                }, 100);
+            });
+
             favorites.append(item);
+            newOutfit.html("");
+            setTimeout(() => {
+                showWindow(windows, 0, homeButton);
+            }, 500);
         } 
     });
 });
@@ -236,10 +270,28 @@ function openModal(item, darkBg) {
         left: ($(window).width() / 2) - (newWidth / 2)
     }, 200);
     const pieces = domFavoriteSelected.find(".item .pieces").children();
-    const occasion = domFavoriteSelected.find(".occasion");
-    occasion.css({top: "-100px", left: "50%"});
+    const itemHeader = domFavoriteSelected.find(".item-header");
+    const occasion = itemHeader.find(".occasion");
+    const options = itemHeader.find(".item-options-button");
+    itemHeader.css({
+        top: "-100px", 
+        width: "100%",
+        left: 0,
+        position: "absolute"
+    });
+    options.addClass("text-light");
     setTimeout(() => {
+        const paddingValue = "30px";
+        itemHeader.animate({
+            paddingTop: paddingValue,
+            paddingBottom: paddingValue,
+            top: 0
+        })
         occasion.animate({
+            top: "50px",
+            fontSize: "3em"
+        }, 500);
+        options.animate({
             top: "50px",
             fontSize: "3em"
         }, 500);
