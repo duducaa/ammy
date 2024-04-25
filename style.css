@@ -138,6 +138,10 @@ input[type=checkbox] {
     height: 100%;
 }
 
+#settings .settings-item {
+    margin-bottom: 1000px;
+}
+
 @media (min-width: 431px) {
     .header {
         height: 14vh;

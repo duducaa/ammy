@@ -52,16 +52,44 @@
             </header>
             <main class="container mt-2">
                 <section id="outfits">
-                    <div class="outfits-header w-100 d-flex justify-content-between">
+                    <div class="outfits-header w-100 d-flex align-items-center">
                         <h1 class="mb-2">Conjuntos:</h1>
-                        <select name="" id="select-part" class="outfit-part form-select w-50 mb-3">
-                            <option value=""></option>
-                            <option value="favoritos">Favoritos</option>
-                            <option value="camisas">Camisa</option>
-                            <option value="vestidos">Vestido</option>
-                            <option value="bermudas">Bermuda</option>
-                            <option value="calcados">Calçado</option>
-                        </select>
+                        <i class="bi bi-filter fs-1 ms-5 filter-button"></i>
+                        <div class="filters bg-light position-absolute d-none">
+                            <i class="bi bi-cross"></i>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <label for="select-part">Evento</label>
+                                    <select name="" id="select-event" class="outfit-part form-select w-100 mb-3">
+                                        <option value=""></option>
+                                        <option value="favoritos">Social</option>
+                                        <option value="camisas">Casual</option>
+                                        <option value="vestidos">Gala</option>
+                                        <option value="bermudas">Sensual</option>
+                                        <option value="calcados">Criativo</option>
+                                    </select>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="select-part">Horário</label>
+                                    <select name="" id="select-time" class="outfit-part form-select w-100 mb-3">
+                                        <option value=""></option>
+                                        <option value="favoritos">Dia</option>
+                                        <option value="camisas">Tarde</option>
+                                        <option value="vestidos">Noite</option>
+                                    </select>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="select-part">Estação</label>
+                                    <select name="" id="select-season" class="outfit-part form-select w-100 mb-3">
+                                        <option value=""></option>
+                                        <option value="favoritos">Primavera</option>
+                                        <option value="camisas">Verão</option>
+                                        <option value="vestidos">Outono</option>
+                                        <option value="bermudas">Inverno</option>
+                                    </select>
+                                </li>
+                              </ul>
+                        </div>
                     </div>
                     <div class="w-100 overflow-auto">
                         <div class="items d-flex align-items-center">
@@ -233,9 +261,9 @@
                 </button>
             </div>
         </div>
-        <div id="settings" class="other-pages container bg-light position-absolute pt-3 d-none">
+        <div id="settings" class="other-pages container bg-light position-absolute pt-3 overflow-y-auto d-none">
             <h1>Configurações</h1>
-            <div class="profile">
+            <div class="profile settings-item">
                 <div class="px-4 py-2 shadow mb-5 rounded-3">
                     <h2>Perfil</h2>
                     <div class="d-flex justify-content-between align-items-center">
@@ -259,7 +287,7 @@
                 </div>
             </div>
             
-            <div class="notifications container px-4 py-2 shadow mb-5 rounded-3">
+            <div class="notifications container px-4 py-2 shadow mb-5 rounded-3 settings-item">
                 <h2>Notificações</h2>
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
@@ -274,7 +302,7 @@
                     <label class="form-check-label" for="flexSwitchCheckDisabled">Novas roupas disponíveis</label>
                 </div>
             </div>
-            <div class="integrations container px-4 py-2 shadow mb-5 rounded-3">
+            <div class="integrations container px-4 py-2 shadow mb-5 rounded-3 settings-item">
                 <h2>Integrações</h2>
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
@@ -285,9 +313,9 @@
                     <label class="form-check-label" for="flexSwitchCheckChecked">Armazenamento em Nuvem</label>
                 </div>
             </div>
-            <div class="support px-4 py-2 shadow mb-5 rounded-3">
+            <div class="support px-4 py-2 shadow mb-5 rounded-3 settings-item">
                 <h2>Suporte</h2>
-                <p class="text-secondary">Entre em contato com o suporte: 75 9 9935-8181</p>
+                <p class="text-secondary">Entre em contato com o suporte: 75 9 1234-5678</p>
             </div>
         </div>
         <nav class=" d-flex justify-content-around align-items-center fixed-bottom z-0">
@@ -297,7 +325,7 @@
         </nav>
     </div>
     
-    <div class="login position-absolute top-0 start-0 w-100 h-100 overflow-auto z-3">
+    <div class="login position-absolute top-0 start-0 w-100 h-100 overflow-auto z-3 d-none">
         <svg class="position-absolute top-25 start-50 translate-middle-x logo" version="1.0" xmlns="http://www.w3.org/2000/svg"
             height="232.000000pt" viewBox="0 0 544.000000 232.000000"
             preserveAspectRatio="xMidYMid meet">

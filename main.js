@@ -15,6 +15,8 @@ $(document).ready(function () {
     const newOutfit = $(".new-outfit");
     const addNewOutfit = $(".add-new-outfit");
     const favorites = $("#outfits .items");
+    const outfitsFilterButton = $("#outfits .filter-button");
+    const outfitFilters = $("#outfits .filters");
 
     loginButton.on("click", function(e) {
         e.preventDefault();
@@ -203,6 +205,36 @@ $(document).ready(function () {
                 showWindow(windows, 0, homeButton);
             }, 500);
         } 
+    });
+    let outfitFilterOffset;
+    outfitsFilterButton.on("click", function() {
+        outfitFilterOffset = $(this).offset();
+        outfitFilters.css({
+            top: outfitFilterOffset.top,
+            left: outfitFilterOffset.left,
+            height: $(this).height(),
+            width: $(this).width(),
+            opacity: 0.5
+        });
+        outfitFilters.removeClass("d-none");
+        outfitFilters.animate({
+            width: "180px",
+            height: "400px",
+            opacity: 1
+        }, 300);
+    });
+
+    outfitsFilterButton.on("blur", function() {
+        outfitFilters.animate({
+            top: outfitFilterOffset.top,
+            left: outfitFilterOffset.left,
+            height: outfitsFilterButton.height(),
+            width: outfitsFilterButton.width(),
+            opacity: 0.5
+        }, 300);
+        setTimeout(() => {
+            outfitFilters.removeClass("d-none");
+        }, 500);
     });
 });
 
